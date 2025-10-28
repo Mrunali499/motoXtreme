@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pressable, Text, type PressableProps } from 'react-native';
 
-type ButtonVariant = 'primary';
+type ButtonVariant = 'primary' | 'dark' | 'outline';
 
 interface ButtonProps extends PressableProps {
   variant?: ButtonVariant;
@@ -16,13 +16,21 @@ export function Button({
   className = '',
   ...props
 }: ButtonProps) {
-  const baseStyles = 'w-[297px] h-[42px] rounded-[8px] items-center justify-center active:opacity-80';
+  const baseStyles = 'w-[297px] h-[42px] rounded-[8px] items-center justify-center';
 
   const variantStyles: Record<ButtonVariant, string> = {
     primary: 'bg-[--primary-button-bg]',
+    dark: 'bg-[--dark-button-bg]',
+    outline: 'bg-[--dark-button-bg] border border-[--outline-button-border]',
   };
 
-  const textStyles = 'text-[--primary-button-text] text-[20px] font-medium';
+  const textVariantStyles: Record<ButtonVariant, string> = {
+    primary: 'text-[--primary-button-text]',
+    dark: 'text-[--dark-button-text]',
+    outline: 'text-[--outline-button-text]',
+  };
+
+  const textStyles = `${textVariantStyles[variant]} font-inter font-medium text-[20px] leading-[24px]`;
 
   const disabledStyles = disabled ? 'opacity-50' : '';
 
