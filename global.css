@@ -2,10 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Background Colors */
+:root {
+  --background-color: #000000;
+}
+
 /* Button Colors */
 :root {
-  --primary-button-bg: #3B82F6;
-  --primary-button-text: #FFFFFF;
-  --secondary-button-bg: #6B7280;
-  --secondary-button-text: #FFFFFF;
+  --primary-button-bg: #E92B0D;
+  --primary-button-text: #FAF3E8;
 }
