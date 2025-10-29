@@ -9,7 +9,7 @@ interface LandingPageProps {
 
 export default function LandingPage({ onGetStarted }: LandingPageProps) {
   return (
-    <View className="flex-1 bg-[--background-color] items-center justify-start">
+    <View className="flex-1 bg-bg-primary items-center justify-start">
       <View className="w-full max-w-[412px] h-[743px] items-center">
         <View className="w-full items-center pt-[112px]">
           <MotoXtremeLogo width="100%" height={392} />

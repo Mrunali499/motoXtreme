@@ -3,9 +3,13 @@ import { View } from 'react-native';
 import { Button } from '../../components/Button';
 import MotoXtremeLogo from '../../assets/motoXtreme-logo.svg';
 
-export default function LoginSignup() {
+interface LoginSignupProps {
+  onLogin: () => void;
+}
+
+export default function LoginSignup({ onLogin }: LoginSignupProps) {
   return (
-    <View className="flex-1 bg-[--background-color] items-center justify-start">
+    <View className="flex-1 bg-bg-primary items-center justify-start">
       <View className="w-full max-w-[412px] h-[743px] items-center">
         <View className="w-full items-center pt-[112px]">
           <MotoXtremeLogo width="100%" height={392} />
@@ -15,7 +19,7 @@ export default function LoginSignup() {
           <Button
             variant="dark"
             title="Log In"
-            onPress={() => console.log('Log In pressed')}
+            onPress={onLogin}
           />
         </View>
 

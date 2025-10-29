@@ -1,18 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Background Colors */
-:root {
-  --background-color: #000000;
-}
-
-/* Button Colors */
-:root {
-  --primary-button-bg: #E92B0D;
-  --primary-button-text: #FAF3E8;
-  --dark-button-bg: #191C1C;
-  --dark-button-text: #FAF3E8;
-  --outline-button-border: #E92B0D;
-  --outline-button-text: #E92B0D;
-}

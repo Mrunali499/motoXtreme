@@ -8,7 +8,21 @@ module.exports = {
   ],
   presets: [require("nativewind/preset")],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'bg-primary': '#000000',
+        'button-primary-bg': '#E92B0D',
+        'button-primary-text': '#FAF3E8',
+        'button-dark-bg': '#191C1C',
+        'button-dark-text': '#FAF3E8',
+        'button-outline-border': '#E92B0D',
+        'button-outline-text': '#E92B0D',
+        'text-white': '#FFFFFF',
+        'input-bg': '#101010',
+        'input-border': '#333333',
+        'input-placeholder': '#868788',
+      },
+    },
   },
   plugins: [],
 }

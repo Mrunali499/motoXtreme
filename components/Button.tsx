@@ -19,15 +19,15 @@ export function Button({
   const baseStyles = 'w-[297px] h-[42px] rounded-[8px] items-center justify-center';
 
   const variantStyles: Record<ButtonVariant, string> = {
-    primary: 'bg-[--primary-button-bg]',
-    dark: 'bg-[--dark-button-bg]',
-    outline: 'bg-[--dark-button-bg] border border-[--outline-button-border]',
+    primary: 'bg-button-primary-bg',
+    dark: 'bg-button-dark-bg',
+    outline: 'bg-button-dark-bg border border-button-outline-border',
   };
 
   const textVariantStyles: Record<ButtonVariant, string> = {
-    primary: 'text-[--primary-button-text]',
-    dark: 'text-[--dark-button-text]',
-    outline: 'text-[--outline-button-text]',
+    primary: 'text-button-primary-text',
+    dark: 'text-button-dark-text',
+    outline: 'text-button-outline-text',
   };
 
   const textStyles = `${textVariantStyles[variant]} font-inter font-medium text-[20px] leading-[24px]`;
