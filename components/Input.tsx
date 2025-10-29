@@ -1,5 +1,9 @@
 import React from 'react';
 import { TextInput, type TextInputProps } from 'react-native';
+import tailwindConfig from '../tailwind.config.js';
+
+const customColors = (tailwindConfig.theme?.extend?.colors || {}) as Record<string, string>;
+const INPUT_PLACEHOLDER_COLOR = customColors['input-placeholder'] || '#868788';
 
 interface InputProps extends TextInputProps {
   placeholder?: string;
@@ -19,9 +23,9 @@ export function Input({
     <TextInput
       className={inputClassName}
       placeholder={placeholder}
-      placeholderTextColor="#868788"
-      selectionColor="#868788"
-      cursorColor="#868788"
+      placeholderTextColor={INPUT_PLACEHOLDER_COLOR}
+      selectionColor={INPUT_PLACEHOLDER_COLOR}
+      cursorColor={INPUT_PLACEHOLDER_COLOR}
       {...props}
     />
   );

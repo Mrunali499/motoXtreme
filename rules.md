@@ -402,77 +402,115 @@ If user provides CSS, follow these steps:
 
 **✅ CORRECT Workflow:**
 
-**Step 1: Check if color exists in `global.css`**
-```css
-/* global.css */
-:root {
-  --primary-bg: #3B82F6;
-  --primary-text: #FFFFFF;
-  --secondary-bg: #6B7280;
-  --text-dark: #111827;
-  --text-light: #9CA3AF;
+**Step 1: Check if color exists in `tailwind.config.js`**
+```javascript
+// tailwind.config.js
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        'bg-primary': '#000000',
+        'button-primary-bg': '#E92B0D',
+        'button-primary-text': '#FAF3E8',
+        'text-white': '#FFFFFF',
+        'input-bg': '#101010',
+        'input-border': '#333333',
+      },
+    },
+  },
 }
 ```
 
-**Step 2: If color exists, use it**
+**Step 2: If color exists, use it in components**
 ```tsx
-<View className="bg-primary-bg">
-  <Text className="text-primary-text">Title</Text>
+<View className="bg-bg-primary">
+  <Text className="text-button-primary-text">Title</Text>
 </View>
 ```
 
-**Step 3: If color doesn't exist, add it first**
-```css
-/* Add to global.css */
-:root {
-  --success-bg: #10B981;
-  --danger-bg: #EF4444;
+**Step 3: If color doesn't exist, add it to tailwind.config.js first**
+```javascript
+// Add to tailwind.config.js
+colors: {
+  'bg-primary': '#000000',
+  'button-primary-bg': '#E92B0D',
+  'text-success': '#10B981',  // New color added
+  'text-error': '#EF4444',    // New color added
 }
 ```
 
 **Step 4: Then use the new color**
 ```tsx
-<View className="bg-success-bg">
-  <Text className="text-white">Success!</Text>
+<View className="bg-bg-primary">
+  <Text className="text-text-success">Success!</Text>
 </View>
+```
+
+**Step 5: For React Native props that require color strings (like TextInput placeholderTextColor)**
+```tsx
+// Import tailwind config
+import tailwindConfig from '../tailwind.config.js';
+
+const customColors = (tailwindConfig.theme?.extend?.colors || {}) as Record<string, string>;
+const PLACEHOLDER_COLOR = customColors['input-placeholder'] || '#868788';
+
+// Use in component
+<TextInput
+  placeholderTextColor={PLACEHOLDER_COLOR}
+  selectionColor={PLACEHOLDER_COLOR}
+  cursorColor={PLACEHOLDER_COLOR}
+/>
 ```
 
 **❌ WRONG - Hard-coded colors:**
 ```tsx
-// ❌ Never do this
+// ❌ Never do this - inline styles with hard-coded colors
 <View style={{ backgroundColor: '#3B82F6' }}>
   <Text style={{ color: '#FFFFFF' }}>Title</Text>
 </View>
 
-// ❌ Never do this
+// ❌ Never do this - hard-coded hex in className
 <View className="bg-[#3B82F6]">
   <Text className="text-[#FFFFFF]">Title</Text>
 </View>
+
+// ❌ Never do this - hard-coded color strings in props
+<TextInput
+  placeholderTextColor="#868788"
+  selectionColor="#868788"
+/>
 ```
 
 ### 2. Color Naming Convention
 
 **Follow this pattern:**
-- `--[purpose]-[property]`
+- `[purpose]-[property]` or `[component]-[property]`
 
 **Examples:**
-```css
-/* Purpose-based naming */
---primary-bg
---primary-text
---secondary-bg
---secondary-text
+```javascript
+// Purpose-based naming
+'bg-primary': '#000000',
+'text-white': '#FFFFFF',
 
-/* State-based naming */
---success-bg
---error-bg
---warning-bg
+// Component-based naming
+'button-primary-bg': '#E92B0D',
+'button-primary-text': '#FAF3E8',
+'button-dark-bg': '#191C1C',
+'input-bg': '#101010',
+'input-border': '#333333',
+'input-placeholder': '#868788',
 
-/* Component-based naming */
---button-bg
---card-bg
---input-border
+// State-based naming
+'text-success': '#10B981',
+'text-error': '#EF4444',
+'text-warning': '#F59E0B',
 ```
+
+**Naming Rules:**
+- Use kebab-case for color names
+- Include the purpose/component and the property type
+- Be descriptive and consistent
+- Examples: `button-primary-bg`, `text-subtitle`, `input-placeholder`
 
 ### 3. Dynamic Colors
 
@@ -483,13 +521,13 @@ If user provides CSS, follow these steps:
 <View className={status === 'active' ? 'bg-[#10B981]' : 'bg-[#EF4444]'}>
 ```
 
-**✅ CORRECT - Using CSS variables:**
+**✅ CORRECT - Using Tailwind config colors:**
 
-**Step 1: Define in global.css**
-```css
-:root {
-  --status-active: #10B981;
-  --status-inactive: #EF4444;
+**Step 1: Define in tailwind.config.js**
+```javascript
+colors: {
+  'status-active': '#10B981',
+  'status-inactive': '#EF4444',
 }
 ```
 
@@ -770,8 +808,9 @@ Before submitting any code, verify:
 - [ ] Component uses TypeScript with proper types
 - [ ] Component uses only Tailwind CSS (no inline styles)
 - [ ] Component is reusable with props
-- [ ] Colors are defined in `global.css`
-- [ ] No hard-coded colors
+- [ ] Colors are defined in `tailwind.config.js`
+- [ ] No hard-coded colors (including props like placeholderTextColor)
+- [ ] Color props reference tailwind.config.js when needed
 - [ ] Responsive layout tested on multiple devices
 - [ ] No duplicate code (array-based rendering used)
 
@@ -780,7 +819,8 @@ Before submitting any code, verify:
 - [ ] Page imports from `App.tsx`
 - [ ] Uses existing components (not duplicating)
 - [ ] Uses only Tailwind CSS
-- [ ] Colors from `global.css`
+- [ ] Colors from `tailwind.config.js`
+- [ ] No hard-coded color values
 - [ ] Responsive layout
 - [ ] No inline styles
 - [ ] Array-based rendering for repeated elements
@@ -790,7 +830,8 @@ Before submitting any code, verify:
 - [ ] Analyzed design for reusable components
 - [ ] Used existing components where possible
 - [ ] Created new components only when necessary
-- [ ] Colors extracted to `global.css`
+- [ ] Colors extracted to `tailwind.config.js`
+- [ ] All colors added to theme.extend.colors
 - [ ] Layout is responsive
 - [ ] Tested on multiple device sizes
 
@@ -801,7 +842,8 @@ Before submitting any code, verify:
 ### Do's ✅
 - Use TypeScript for all files
 - Use Tailwind CSS exclusively
-- Define colors in `global.css`
+- Define colors in `tailwind.config.js` theme.extend.colors
+- Reference tailwind.config.js for color props (placeholderTextColor, etc.)
 - Reuse existing components
 - Use props for variations
 - Array-based rendering for duplicates

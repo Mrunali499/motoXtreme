@@ -21,6 +21,8 @@ module.exports = {
         'input-bg': '#101010',
         'input-border': '#333333',
         'input-placeholder': '#868788',
+        'text-subtitle': '#444444',
+        'text-timer': '#FF2300',
       },
     },
   },
