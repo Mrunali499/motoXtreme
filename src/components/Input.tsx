@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextInput, type TextInputProps } from 'react-native';
-import tailwindConfig from '../tailwind.config.js';
+import tailwindConfig from '../../tailwind.config.js';
 
 const customColors = (tailwindConfig.theme?.extend?.colors || {}) as Record<string, string>;
 const INPUT_PLACEHOLDER_COLOR = customColors['input-placeholder'] || '#868788';

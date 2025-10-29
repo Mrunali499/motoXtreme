@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Button } from '../../components/Button';
-import MotoXtremeLogo from '../../assets/motoXtreme-logo.svg';
+import MotoXtremeLogo from '../../../assets/motoXtreme-logo.svg';
 
 interface LandingPageProps {
   onGetStarted: () => void;

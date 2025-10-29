@@ -47,18 +47,20 @@ MotoXtreme is a React Native mobile application built with:
 ```
 motoXtreme/
 ├── App.tsx              # Routes and navigation ONLY
-├── pages/               # All page components
-│   ├── [flow-name]/     # Optional: Folder for specific flows
-│   │   └── PageName.tsx
-│   └── Home.tsx
-├── components/          # All reusable components
-│   └── Button.tsx
+├── src/                 # Source code folder
+│   ├── pages/           # All page components
+│   │   ├── [flow-name]/ # Optional: Folder for specific flows
+│   │   │   └── PageName.tsx
+│   │   └── Home.tsx
+│   └── components/      # All reusable components
+│       └── Button.tsx
 ├── assets/              # All static assets (SVG only)
 │   └── *.svg            # All icons and images in SVG format
 ├── ref/                 # Figma designs and reference files
 │   ├── full-screens/    # Full Figma screen SVGs
 │   └── components/      # Component-specific SVGs
-└── global.css           # Global styles and color variables
+├── global.css           # Global Tailwind directives
+└── tailwind.config.js   # Tailwind configuration and colors
 ```
 
 ### 2. App.tsx Rules
@@ -114,12 +116,12 @@ export default function App() {
 
 **Folder Organization:**
 ```
-pages/
+src/pages/
 ├── Home.tsx                    # Main pages at root
-├── auth/                       # Authentication flow
+├── loginflow/                  # Login/auth flow
+│   ├── LandingPage.tsx
 │   ├── Login.tsx
-│   ├── Register.tsx
-│   └── ForgotPassword.tsx
+│   └── Verification.tsx
 ├── profile/                    # Profile flow
 │   ├── ViewProfile.tsx
 │   └── EditProfile.tsx
@@ -140,7 +142,7 @@ pages/
 
 **Example Structure:**
 ```
-components/
+src/components/
 ├── Button.tsx
 ├── Card.tsx
 ├── Input.tsx

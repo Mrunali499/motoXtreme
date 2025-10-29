@@ -2,9 +2,13 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
-import MotoXtremeLogo from '../../assets/motoXtreme-logo.svg';
+import MotoXtremeLogo from '../../../assets/motoXtreme-logo.svg';
 
-export default function Verification() {
+interface LoginProps {
+  onSendOTP: () => void;
+}
+
+export default function Login({ onSendOTP }: LoginProps) {
   return (
     <View className="flex-1 bg-bg-primary items-center justify-start">
       <View className="w-full max-w-[412px] h-[743px] items-center">
@@ -16,18 +20,16 @@ export default function Verification() {
 
         <View className="absolute top-[359px] w-full items-center">
           <View className="w-[297px]">
-            <Text className="font-inter font-normal text-[16px] leading-[24px] text-text-white mb-[11px]">OTP</Text>
-            <Text className="w-[297px] h-[36px] font-inter font-medium text-[14px] leading-[17px] text-text-subtitle mb-[11px]">We have sent the OTP code to your phone number</Text>
+            <Text className="font-inter font-normal text-[16px] leading-[24px] text-text-white mb-[11px]">Phone Number</Text>
             <Input
-              placeholder=""
-              keyboardType="numeric"
+              placeholder="+91 xxxxxxxxxx"
+              keyboardType="phone-pad"
             />
-            <Text className="w-[30px] h-[24px] font-inter font-normal text-[11px] leading-[24px] text-text-timer mt-[11px]">01:00</Text>
           </View>
         </View>
 
-        <View className="absolute top-[563px] w-full items-center">
-          <Button variant="primary" title="Verify OTP" onPress={() => console.log('Verify OTP pressed')} />
+        <View className="absolute top-[467px] w-full items-center">
+          <Button variant="primary" title="Send OTP" onPress={onSendOTP} />
         </View>
       </View>
     </View>
