@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
@@ -9,6 +9,15 @@ interface LoginProps {
 }
 
 export default function Login({ onSendOTP }: LoginProps) {
+  const [phoneNumber, setPhoneNumber] = useState('');
+
+  const handlePhoneChange = (text: string) => {
+    const numericOnly = text.replace(/[^0-9]/g, '');
+    if (numericOnly.length <= 10) {
+      setPhoneNumber(numericOnly);
+    }
+  };
+
   return (
     <View className="flex-1 bg-bg-primary items-center justify-start">
       <View className="w-full max-w-[412px] h-[743px] items-center">
@@ -24,6 +33,9 @@ export default function Login({ onSendOTP }: LoginProps) {
             <Input
               placeholder="+91 xxxxxxxxxx"
               keyboardType="phone-pad"
+              value={phoneNumber}
+              onChangeText={handlePhoneChange}
+              maxLength={10}
             />
           </View>
         </View>

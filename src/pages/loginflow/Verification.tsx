@@ -1,10 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text } from 'react-native';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
 import MotoXtremeLogo from '../../../assets/motoXtreme-logo.svg';
 
 export default function Verification() {
+  const [timeLeft, setTimeLeft] = useState(60);
+
+  useEffect(() => {
+    if (timeLeft <= 0) return;
+
+    const timer = setInterval(() => {
+      setTimeLeft((prevTime) => prevTime - 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [timeLeft]);
+
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  };
+
   return (
     <View className="flex-1 bg-bg-primary items-center justify-start">
       <View className="w-full max-w-[412px] h-[743px] items-center">
@@ -22,7 +40,7 @@ export default function Verification() {
               placeholder=""
               keyboardType="numeric"
             />
-            <Text className="w-[30px] h-[24px] font-inter font-normal text-[11px] leading-[24px] text-text-timer mt-[11px]">01:00</Text>
+            <Text className="w-[30px] h-[24px] font-inter font-normal text-[11px] leading-[24px] text-text-timer mt-[11px]">{formatTime(timeLeft)}</Text>
           </View>
         </View>
 
