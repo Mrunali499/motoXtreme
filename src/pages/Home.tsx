@@ -3,6 +3,7 @@ import { View, ScrollView, Text } from 'react-native';
 import { Navbar } from '../components/Navbar';
 import { RideCard } from '../components/RideCard';
 import { Button } from '../components/Button';
+import { CurrentStatusCard } from '../components/CurrentStatusCard';
 
 export default function Home() {
   const handleSearchPress = () => {
@@ -49,7 +50,7 @@ export default function Home() {
           onPress={handleOpenRide}
         />
 
-        <View className="flex-row items-center mt-4 w-[90%] max-w-[362px] self-center gap-x-4">
+        <View className="flex-row items-center mt-4 mb-6 w-[90%] max-w-[362px] self-center gap-x-4">
           <Button
             variant="primary"
             title="Create Ride"
@@ -65,6 +66,17 @@ export default function Home() {
             className="flex-1 h-[31px]"
           />
         </View>
+
+        <CurrentStatusCard
+          territoriesOwned={47}
+          kmThisMonth={1247}
+          groupRides={12}
+          cityRank={23}
+        />
+
+        <Text className="ml-[25px] mt-6 font-inter font-semibold text-[16px] leading-[21px] items-start text-button-primary-bg">
+          Quick Actions
+        </Text>
       </ScrollView>
     </View>
   );
