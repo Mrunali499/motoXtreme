@@ -4,7 +4,11 @@ import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
 import MotoXtremeLogo from '../../../assets/motoXtreme-logo.svg';
 
-export default function Verification() {
+interface VerificationProps {
+  onVerifySuccess?: () => void;
+}
+
+export default function Verification({ onVerifySuccess }: VerificationProps) {
   const [timeLeft, setTimeLeft] = useState(60);
 
   useEffect(() => {
@@ -43,7 +47,7 @@ export default function Verification() {
         </View>
 
         <View className="w-full items-center mt-[42px]">
-          <Button variant="primary" title="Verify OTP" onPress={() => console.log('Verify OTP pressed')} />
+          <Button variant="primary" title="Verify OTP" onPress={onVerifySuccess} />
         </View>
       </View>
     </View>

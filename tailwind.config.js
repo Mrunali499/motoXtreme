@@ -21,6 +21,7 @@ module.exports = {
         'input-placeholder': '#868788',
         'text-subtitle': '#444444',
         'text-timer': '#FF2300',
+        'text-primary': '#FEF9F3',
       },
     },
   },
