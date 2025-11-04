@@ -26,6 +26,7 @@ module.exports = {
         'text-timer': '#FF2300',
         'text-primary': '#FEF9F3',
         'card-gradient-start': '#25150C',
+        'icon-container-bg': '#FFFFFF1F',
       },
     },
   },

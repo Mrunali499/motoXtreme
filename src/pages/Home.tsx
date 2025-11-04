@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, ScrollView, Text } from 'react-native';
 import { Navbar } from '../components/Navbar';
 import { RideCard } from '../components/RideCard';
 import { Button } from '../components/Button';
 import { CurrentStatusCard } from '../components/CurrentStatusCard';
+import { ActionsCard } from '../components/ActionsCard';
 
 export default function Home() {
   const handleSearchPress = () => {
@@ -24,6 +25,28 @@ export default function Home() {
 
   const handleEvent = () => {
     console.log('Event pressed');
+  };
+
+  const [selectedCard, setSelectedCard] = useState<string | null>(null);
+
+  const handleWeatherPress = () => {
+    setSelectedCard('weather');
+    console.log('Weather & Road Status pressed');
+  };
+
+  const handleGroupPress = () => {
+    setSelectedCard('group');
+    console.log('Group pressed');
+  };
+
+  const handleLeadershipPress = () => {
+    setSelectedCard('leadership');
+    console.log('Leadership pressed');
+  };
+
+  const handleTerritoriesPress = () => {
+    setSelectedCard('territories');
+    console.log('Territories pressed');
   };
 
   return (
@@ -74,9 +97,38 @@ export default function Home() {
           cityRank={23}
         />
 
-        <Text className="ml-[25px] mt-6 font-inter font-semibold text-[16px] leading-[21px] items-start text-button-primary-bg">
-          Quick Actions
-        </Text>
+        <View className="w-[90%] max-w-[361px] self-center mt-6">
+          <Text className="font-inter font-semibold text-[16px] leading-[21px] text-button-primary-bg">
+            Quick Actions
+          </Text>
+        </View>
+
+        <View className="w-[90%] max-w-[361px] self-center mt-4 mb-6">
+          <View className="flex-row gap-x-[20px] mb-4">
+            <ActionsCard
+              variant="weather"
+              isSelected={selectedCard === 'weather'}
+              onPress={handleWeatherPress}
+            />
+            <ActionsCard
+              variant="group"
+              isSelected={selectedCard === 'group'}
+              onPress={handleGroupPress}
+            />
+          </View>
+          <View className="flex-row gap-x-[20px]">
+            <ActionsCard
+              variant="leadership"
+              isSelected={selectedCard === 'leadership'}
+              onPress={handleLeadershipPress}
+            />
+            <ActionsCard
+              variant="territories"
+              isSelected={selectedCard === 'territories'}
+              onPress={handleTerritoriesPress}
+            />
+          </View>
+        </View>
       </ScrollView>
     </View>
   );
