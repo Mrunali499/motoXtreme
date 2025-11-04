@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, ScrollView, Text } from 'react-native';
 import { Navbar } from '../components/Navbar';
+import { RideCard } from '../components/RideCard';
 
 export default function Home() {
   const handleSearchPress = () => {
@@ -9,6 +10,10 @@ export default function Home() {
 
   const handleNotificationPress = () => {
     console.log('Notification pressed');
+  };
+
+  const handleOpenRide = () => {
+    console.log('Open ride pressed');
   };
 
   return (
@@ -22,8 +27,18 @@ export default function Home() {
         Upcoming Rides
       </Text>
 
-      <ScrollView className="flex-1 px-4 mt-2">
-        {/* Content will go here */}
+      <ScrollView className="flex-1 px-4 mt-4">
+        <RideCard
+          title="Desert Thunder Rally"
+          from="Pune"
+          to="Lonavala"
+          dateTime="Tomorrow - 8:00 AM"
+          ridersJoined={24}
+          weather="Clear"
+          temperature="24C"
+          duration="2h 15m"
+          onPress={handleOpenRide}
+        />
       </ScrollView>
     </View>
   );

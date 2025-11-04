@@ -22,6 +22,7 @@ module.exports = {
         'text-subtitle': '#444444',
         'text-timer': '#FF2300',
         'text-primary': '#FEF9F3',
+        'card-gradient-start': '#25150C',
       },
     },
   },
