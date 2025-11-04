@@ -2,6 +2,7 @@ import React from 'react';
 import { View, ScrollView, Text } from 'react-native';
 import { Navbar } from '../components/Navbar';
 import { RideCard } from '../components/RideCard';
+import { Button } from '../components/Button';
 
 export default function Home() {
   const handleSearchPress = () => {
@@ -14,6 +15,14 @@ export default function Home() {
 
   const handleOpenRide = () => {
     console.log('Open ride pressed');
+  };
+
+  const handleCreateRide = () => {
+    console.log('Create ride pressed');
+  };
+
+  const handleEvent = () => {
+    console.log('Event pressed');
   };
 
   return (
@@ -39,6 +48,23 @@ export default function Home() {
           duration="2h 15m"
           onPress={handleOpenRide}
         />
+
+        <View className="flex-row items-center mt-4 w-[90%] max-w-[362px] self-center gap-x-4">
+          <Button
+            variant="primary"
+            title="Create Ride"
+            onPress={handleCreateRide}
+            size="small"
+            className="flex-1 h-[31px]"
+          />
+          <Button
+            variant="secondary"
+            title="Event"
+            onPress={handleEvent}
+            size="small"
+            className="flex-1 h-[31px]"
+          />
+        </View>
       </ScrollView>
     </View>
   );
