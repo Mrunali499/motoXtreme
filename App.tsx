@@ -8,7 +8,7 @@ import Verification from './src/pages/loginflow/Verification';
 import Home from './src/pages/Home';
 
 export default function App() {
-  const [currentScreen, setCurrentScreen] = useState<'landing' | 'loginSignup' | 'login' | 'verification' | 'home'>('landing');
+  const [currentScreen, setCurrentScreen] = useState<'landing' | 'loginSignup' | 'login' | 'verification' | 'home'>('home');
 
   useEffect(() => {
     const backAction = () => {

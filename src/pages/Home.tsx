@@ -5,6 +5,7 @@ import { RideCard } from '../components/RideCard';
 import { Button } from '../components/Button';
 import { CurrentStatusCard } from '../components/CurrentStatusCard';
 import { ActionsCard } from '../components/ActionsCard';
+import { CommunityHighlights } from '../components/CommunityHighlights';
 import { BottomNavigation } from '../components/BottomNavigation';
 
 export default function Home() {
@@ -63,13 +64,13 @@ export default function Home() {
         onNotificationPress={handleNotificationPress}
       />
 
-      <Text className="ml-[25px] mt-3 font-normal text-[10px] leading-[12px] text-text-primary">
-        Upcoming Rides
-      </Text>
-
       <ScrollView className="flex-1 px-4 mt-4">
-        <RideCard
-          title="Desert Thunder Rally"
+        <Text className="ml-[25px] font-normal text-[10px] leading-[12px] text-text-primary">
+          Upcoming Rides
+        </Text>
+        <View className="mt-4">
+          <RideCard
+            title="Desert Thunder Rally"
           from="Pune"
           to="Lonavala"
           dateTime="Tomorrow - 8:00 AM"
@@ -79,6 +80,7 @@ export default function Home() {
           duration="2h 15m"
           onPress={handleOpenRide}
         />
+        </View>
 
         <View className="flex-row items-center mt-4 mb-6 w-[90%] max-w-[362px] self-center gap-x-4">
           <Button
@@ -136,6 +138,31 @@ export default function Home() {
             />
           </View>
         </View>
+
+        <CommunityHighlights
+          className="mt-4 mb-6"
+          cards={[
+            {
+              riderName: 'RiderX_92',
+              timeAgo: '15 min ago',
+             title: 'Just conquered the Mountain Pass! Epic views and challenging terrain'
+
+            },
+           {
+              riderName: 'ThunderRider',
+              timeAgo: '1 hour ago',
+             title: 'New territory unlocked! Who\'s ready for tommorrow\'s group ride?'
+
+            },
+            {
+              riderName: 'RiderX_92',
+              timeAgo: '15 min ago',
+             title: 'Just conquered the Mountain Pass! Epic views and challenging terrain'
+
+            },
+          ]}
+          onCardPress={(card) => console.log('Community card pressed:', card.title)}
+        />
       </ScrollView>
       <BottomNavigation activeTab={activeTab} onTabPress={handleTabPress} />
     </View>
