@@ -5,6 +5,7 @@ import { RideCard } from '../components/RideCard';
 import { Button } from '../components/Button';
 import { CurrentStatusCard } from '../components/CurrentStatusCard';
 import { ActionsCard } from '../components/ActionsCard';
+import { BottomNavigation } from '../components/BottomNavigation';
 
 export default function Home() {
   const handleSearchPress = () => {
@@ -28,6 +29,7 @@ export default function Home() {
   };
 
   const [selectedCard, setSelectedCard] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<'home' | 'rides' | 'profile'>('home');
 
   const handleWeatherPress = () => {
     setSelectedCard('weather');
@@ -47,6 +49,11 @@ export default function Home() {
   const handleTerritoriesPress = () => {
     setSelectedCard('territories');
     console.log('Territories pressed');
+  };
+
+  const handleTabPress = (tab: 'home' | 'rides' | 'profile') => {
+    setActiveTab(tab);
+    console.log(`Tab pressed: ${tab}`);
   };
 
   return (
@@ -130,6 +137,7 @@ export default function Home() {
           </View>
         </View>
       </ScrollView>
+      <BottomNavigation activeTab={activeTab} onTabPress={handleTabPress} />
     </View>
   );
 }

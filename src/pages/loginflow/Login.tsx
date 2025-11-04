@@ -18,6 +18,15 @@ export default function Login({ onSendOTP }: LoginProps) {
     }
   };
 
+  const handleSendOTP = () => {
+    if (phoneNumber.trim().length === 10) {
+      onSendOTP();
+    }
+  };
+
+  // Check if phone number is valid (exactly 10 digits)
+  const isPhoneNumberValid = phoneNumber.trim().length === 10;
+
   return (
     <View className="flex-1 bg-bg-primary items-center px-4 overflow-hidden">
       <View className="w-full max-w-[412px] items-center pt-[17px]">
@@ -39,7 +48,7 @@ export default function Login({ onSendOTP }: LoginProps) {
         </View>
 
         <View className="w-full items-center mt-[66px]">
-          <Button variant="primary" title="Send OTP" onPress={onSendOTP} />
+          <Button variant="primary" title="Send OTP" onPress={handleSendOTP} />
         </View>
       </View>
     </View>
