@@ -37,15 +37,10 @@ export function SearchBar({ onClose, onSearch, onOptionSelect, placeholder = 'Se
 
   return (
     <View className="relative" style={{ zIndex: showOptions ? 9999 : 1 }}>
-      {/* Search Bar Input - always same height */}
+      {/* Search Bar Input - always 30px height with consistent styling */}
       <View
-        className={`w-[165px] h-[30px] bg-button-secondary-text rounded-[5px] flex-row items-center px-[5px] relative ${className}`}
+        className={`w-[165px] h-[30px] bg-button-secondary-text ${showOptions ? 'rounded-t-[5px]' : 'rounded-[5px]'} flex-row items-center px-[5px] relative`}
         style={{
-          shadowColor: showOptions ? '#000000' : 'transparent',
-          shadowOffset: showOptions ? { width: 0, height: 4 } : { width: 0, height: 0 },
-          shadowOpacity: showOptions ? 0.25 : 0,
-          shadowRadius: showOptions ? 12 : 0,
-          elevation: showOptions ? 12 : 0,
           zIndex: showOptions ? 1001 : 1,
           position: 'relative'
         }}
@@ -60,7 +55,11 @@ export function SearchBar({ onClose, onSearch, onOptionSelect, placeholder = 'Se
           )}
           <TextInput
             className="absolute top-0 left-0 z-[2] w-full h-[26px] text-[13px] font-inter font-normal text-black bg-transparent border-0 p-0 m-0"
-            style={{textAlignVertical: 'center', includeFontPadding: false}}
+            style={{
+              textAlignVertical: 'center',
+              includeFontPadding: false,
+              color: '#000000' // Ensure text color stays black
+            }}
             value={query}
             onChangeText={handleTextChange}
             selectionColor="black"
@@ -81,28 +80,32 @@ export function SearchBar({ onClose, onSearch, onOptionSelect, placeholder = 'Se
         </TouchableOpacity>
       </View>
 
-      {/* Search Options Overlay - positioned absolutely below search bar */}
+      {/* Search Options Overlay - separate container below search bar */}
       {showOptions && (
         <View
-          className="absolute bg-button-secondary-text rounded-[5px]"
+          className="absolute bg-button-secondary-text rounded-b-[5px]"
           style={{
-            top: 35,
+            top: 30, // Start exactly where search bar ends
             left: 0,
             width: 165,
-            paddingTop: 3,
+            paddingTop: 0, // No gap between search bar and options
             paddingHorizontal: 5,
             paddingBottom: 10,
-            shadowColor: 'black',
-            shadowOffset: { width: 0, height: 4 },
-            shadowOpacity: 0.25,
-            shadowRadius: 12,
-            elevation: 12,
-            zIndex: 9998, // High z-index but less than container
-            position: 'absolute' // Explicitly set position
+            zIndex: 9998,
+            position: 'absolute'
           }}
         >
-  
-          {/* Search Options */}
+          {/* Horizontal line above options */}
+          <View
+            className="w-[155px] self-center"
+            style={{
+              height: 1,
+              backgroundColor: '#333333',
+              opacity: 0.3,
+              marginBottom: 8
+            }}
+          />
+
           <View className="flex flex-col items-start w-full">
             {searchOptions.map((item) => (
               <Pressable

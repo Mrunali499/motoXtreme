@@ -52,7 +52,7 @@ export function Navbar({ onSearchPress, onNotificationPress }: NavbarProps) {
             />
           ) : (
             <TouchableOpacity onPress={handleSearchPress}>
-              <View className="w-[26px] h-[26px] bg-text-primary rounded-[20px] items-center justify-center shadow-lg">
+              <View className="w-[26px] h-[26px] bg-button-secondary-text rounded-[20px] items-center justify-center shadow-lg">
                 <SearchIcon width={10} height={10} />
               </View>
             </TouchableOpacity>
