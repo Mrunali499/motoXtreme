@@ -38,8 +38,8 @@ export function Navbar({ onSearchPress, onNotificationPress }: NavbarProps) {
   ];
 
   return (
-    <View className="w-full bg-bg-primary rounded-[6px] mt-10 relative z-[100]">
-      <View className="h-[60px] flex-row items-center justify-between px-4 relative z-[101]">
+    <View className="w-full bg-bg-primary rounded-[6px] mt-10 relative" style={{ zIndex: showSearch ? 1000 : 100 }}>
+      <View className="h-[60px] flex-row items-center justify-between px-4 relative" style={{ zIndex: showSearch ? 1001 : 101 }}>
         <Logo width={140} height={22} />
 
         <View className="flex-row items-center gap-x-4 mr-5">

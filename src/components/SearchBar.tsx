@@ -36,7 +36,7 @@ export function SearchBar({ onClose, onSearch, onOptionSelect, placeholder = 'Se
   const showOptions = query.length > 0 && searchOptions.length > 0;
 
   return (
-    <View className="relative">
+    <View className="relative" style={{ zIndex: showOptions ? 9999 : 1 }}>
       {/* Search Bar Input - always same height */}
       <View
         className={`w-[165px] h-[30px] bg-button-secondary-text rounded-[5px] flex-row items-center px-[5px] relative ${className}`}
@@ -46,7 +46,8 @@ export function SearchBar({ onClose, onSearch, onOptionSelect, placeholder = 'Se
           shadowOpacity: showOptions ? 0.25 : 0,
           shadowRadius: showOptions ? 12 : 0,
           elevation: showOptions ? 12 : 0,
-          zIndex: showOptions ? 1000 : 1
+          zIndex: showOptions ? 1001 : 1,
+          position: 'relative'
         }}
       >
         <SearchIcon width={10} height={10} />
@@ -83,7 +84,7 @@ export function SearchBar({ onClose, onSearch, onOptionSelect, placeholder = 'Se
       {/* Search Options Overlay - positioned absolutely below search bar */}
       {showOptions && (
         <View
-          className="absolute bg-button-secondary-text rounded-[5px] z-[999]"
+          className="absolute bg-button-secondary-text rounded-[5px]"
           style={{
             top: 35,
             left: 0,
@@ -95,7 +96,9 @@ export function SearchBar({ onClose, onSearch, onOptionSelect, placeholder = 'Se
             shadowOffset: { width: 0, height: 4 },
             shadowOpacity: 0.25,
             shadowRadius: 12,
-            elevation: 12
+            elevation: 12,
+            zIndex: 9998, // High z-index but less than container
+            position: 'absolute' // Explicitly set position
           }}
         >
   
