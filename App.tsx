@@ -1,6 +1,7 @@
 import './global.css';
 import React, { useState, useEffect } from 'react';
 import { StatusBar, BackHandler, View } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import LandingPage from './src/pages/loginflow/LandingPage';
 import LoginSignup from './src/pages/loginflow/LoginSignup';
 import Login from './src/pages/loginflow/Login';
@@ -33,17 +34,19 @@ export default function App() {
   }, [currentScreen]);
 
   return (
-    <View className="flex-1">
-      {currentScreen === 'landing' && (
-        <LandingPage onGetStarted={() => setCurrentScreen('loginSignup')} />
-      )}
-      {currentScreen === 'loginSignup' && (
-        <LoginSignup onLogin={() => setCurrentScreen('login')} />
-      )}
-      {currentScreen === 'login' && <Login onSendOTP={() => setCurrentScreen('verification')} />}
-      {currentScreen === 'verification' && <Verification onVerifySuccess={() => setCurrentScreen('home')} />}
-      {currentScreen === 'home' && <Home />}
-      <StatusBar barStyle="light-content" />
-    </View>
+    <SafeAreaProvider>
+      <View className="flex-1">
+        {currentScreen === 'landing' && (
+          <LandingPage onGetStarted={() => setCurrentScreen('loginSignup')} />
+        )}
+        {currentScreen === 'loginSignup' && (
+          <LoginSignup onLogin={() => setCurrentScreen('login')} />
+        )}
+        {currentScreen === 'login' && <Login onSendOTP={() => setCurrentScreen('verification')} />}
+        {currentScreen === 'verification' && <Verification onVerifySuccess={() => setCurrentScreen('home')} />}
+        {currentScreen === 'home' && <Home />}
+        <StatusBar barStyle="light-content" />
+      </View>
+    </SafeAreaProvider>
   );
 }

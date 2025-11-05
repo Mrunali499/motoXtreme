@@ -64,7 +64,7 @@ export default function Home() {
         onNotificationPress={handleNotificationPress}
       />
 
-      <ScrollView className="flex-1 px-4 mt-4">
+      <ScrollView className="flex-1 px-4 mt-4" style={{ paddingBottom: 80 }}>
         <Text className="ml-[25px] font-normal text-[10px] leading-[12px] text-text-primary">
           Upcoming Rides
         </Text>

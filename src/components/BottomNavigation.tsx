@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, TouchableOpacity } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import HomeIcon from '../../assets/home-icon.svg';
 import RideIcon from '../../assets/ride-icon.svg';
 import UserProfileIcon from '../../assets/user-profile.svg';
@@ -44,9 +45,10 @@ export function BottomNavigation({
 }: BottomNavProps) {
   const tabs = Object.keys(tabConfig) as TabType[];
   const activeIndex = tabs.indexOf(activeTab);
+  const insets = useSafeAreaInsets();
 
   return (
-    <View className="relative">
+    <View className="relative" style={{ paddingBottom: insets.bottom }}>
       <View className="w-full h-[67px] bg-input-bg rounded-t-[32px] flex-row justify-between items-center px-8">
         {tabs.map((tabKey) => {
           const config = tabConfig[tabKey];
@@ -78,7 +80,7 @@ export function BottomNavigation({
         className="absolute w-[46px] h-[45px] bg-button-primary-bg rounded-full items-center justify-center"
         style={{
           left: `${(activeIndex * (100 / 3)) + (50 / 3) - 5.75}%`,
-          bottom: 11,
+          bottom: 11 + insets.bottom,
         }}
       >
         {(() => {
